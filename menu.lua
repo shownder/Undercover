@@ -5,11 +5,23 @@
  
 local storyboard = require( "storyboard" )
 local scene = storyboard.newScene()
+local widget = require("widget")
+widget.setTheme("widget_theme_ios")
  
 -- Clear previous scene
 storyboard.removeAll()
  
 -- local forward references should go here --
+
+local singleDevice
+
+local function singleDeviceStart(event)
+  local phase = event.phase
+
+  if ("ended" == phase) then 
+    storyboard.gotoScene( "setup", "fade", 500 )
+  end
+end
  
 ---------------------------------------------------------------------------------
 -- BEGINNING OF YOUR IMPLEMENTATION
@@ -18,6 +30,16 @@ storyboard.removeAll()
 -- Called when the scene's view does not exist:
 function scene:createScene( event )
   local group = self.view
+
+  singleDevice = widget.newButton
+  {
+    left = display.contentCenterX,
+    top = display.contentCenterY,
+    id = "singleDevice",
+    label = "Start",
+    onEvent = singleDeviceStart,
+  }
+  group:insert(singleDevice)
  
 end
  

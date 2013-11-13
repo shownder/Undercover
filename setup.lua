@@ -10,6 +10,7 @@ local scene = storyboard.newScene()
 storyboard.removeAll()
  
 -- local forward references should go here --
+local gameLabel
  
 ---------------------------------------------------------------------------------
 -- BEGINNING OF YOUR IMPLEMENTATION
@@ -18,6 +19,13 @@ storyboard.removeAll()
 -- Called when the scene's view does not exist:
 function scene:createScene( event )
   local group = self.view
+
+  gameLabel = display.newText( "Game Setup!", 0, 0, native.systemFont, 16 )
+  group:insert(gameLabel)
+  gameLabel:setTextColor(255, 255, 255)
+  gameLabel:setReferencePoint(display.CenterReferencePoint)
+  gameLabel.x = display.contentCenterX
+  gameLabel.y = display.contentCenterY
  
 end
  
